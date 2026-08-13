@@ -1,0 +1,40 @@
+{
+  "name": "digital-collectibles-admin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "数和文创数字藏品平台 - 运营管理后台",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint src --ext .ts,.vue --max-warnings 0",
+    "lint:fix": "eslint src --ext .ts,.vue --fix"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@vueup/vue-quill": "^1.2.0",
+    "axios": "^1.6.8",
+    "dayjs": "^1.11.10",
+    "decimal.js": "^10.4.3",
+    "echarts": "^5.5.0",
+    "element-plus": "2.6.3",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.13",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-vue": "^4.6.2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.24.1",
+    "sass": "^1.72.0",
+    "typescript": "5.3.3",
+    "vite": "^4.5.3",
+    "vite-plugin-pwa": "^0.17.5",
+    "vue-tsc": "^1.8.27"
+  }
+}

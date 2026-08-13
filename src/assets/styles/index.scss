@@ -1,0 +1,255 @@
+@use './variables.scss' as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: $font-size-md;
+  color: $text-primary;
+  background-color: $bg-page;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+// ---------- 通用布局卡片 ----------
+.app-page {
+  padding: 16px;
+}
+
+.app-card {
+  background: $bg-white;
+  border-radius: $radius-card;
+  box-shadow: $shadow-card;
+  padding: 20px;
+  margin-bottom: 16px;
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      font-size: $font-size-lg;
+      font-weight: 600;
+      color: $text-primary;
+
+      &::before {
+        content: '';
+        width: 4px;
+        height: 16px;
+        border-radius: 2px;
+        margin-right: 8px;
+        background: linear-gradient(180deg, $color-primary, #7c3aed);
+      }
+    }
+  }
+}
+
+// ---------- 搜索卡片 ----------
+.search-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+
+  .search-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .el-form-item {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ---------- 表格容器 ----------
+.table-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pagination-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+// ---------- 渐变指标卡片 ----------
+.stat-card {
+  position: relative;
+  border-radius: $radius-card;
+  padding: 20px;
+  color: #fff;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  .stat-icon {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 42px;
+    opacity: 0.9;
+  }
+
+  .stat-label {
+    font-size: $font-size-sm;
+    opacity: 0.9;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 8px;
+    line-height: 1.2;
+  }
+
+  .stat-extra {
+    font-size: $font-size-xs;
+    margin-top: 8px;
+    opacity: 0.85;
+  }
+}
+
+// ---------- el-table 细节 ----------
+.el-table {
+  border-radius: $radius-card;
+
+  th.el-table__cell {
+    background: $bg-table-head !important;
+    color: $text-regular;
+    font-weight: 600;
+  }
+
+  .el-table__cell {
+    height: 48px;
+  }
+
+  .el-table__body tr:hover > td.el-table__cell {
+    background: $bg-table-head !important;
+  }
+}
+
+// ---------- 弹窗 ----------
+.el-dialog {
+  border-radius: $radius-card;
+
+  .el-dialog__header {
+    border-bottom: 1px solid $border-color;
+    margin-right: 0;
+    padding: 16px 20px;
+  }
+
+  .el-dialog__body {
+    padding: 20px;
+  }
+
+  .el-dialog__footer {
+    padding: 12px 20px 20px;
+  }
+}
+
+// ---------- 滚动条 ----------
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c4cc;
+  border-radius: 4px;
+
+  &:hover {
+    background: #a8abb2;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+// ---------- 通用工具类 ----------
+.text-muted {
+  color: $text-secondary;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+// ---------- 移动端适配 ----------
+@media (max-width: 768px) {
+  .app-page {
+    padding: 8px;
+  }
+
+  .app-card {
+    padding: 14px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 22px;
+  }
+
+  .el-dialog {
+    --el-dialog-width: 100% !important;
+    width: 100% !important;
+    margin: 0;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+
+    .el-dialog__body {
+      flex: 1;
+      overflow-y: auto;
+    }
+  }
+
+  .el-message-box {
+    width: calc(100vw - 32px) !important;
+  }
+}
