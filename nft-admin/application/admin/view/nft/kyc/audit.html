@@ -1,0 +1,44 @@
+<form id="audit-form" class="form-horizontal form-ajax" role="form" method="POST" action="">
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">用户:</label>
+            <div class="col-xs-12 col-sm-8">
+                <p class="form-control-static">{$row.user.nickname|htmlentities}（ID: {$row.user_id}）</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">真实姓名:</label>
+            <div class="col-xs-12 col-sm-8"><p class="form-control-static">{$row.real_name|htmlentities}</p></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">身份证号:</label>
+            <div class="col-xs-12 col-sm-8"><p class="form-control-static">{$row.idcard|htmlentities}</p></div>
+        </div>
+        {if $row.idcard_front || $row.idcard_back}
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">证件照片:</label>
+            <div class="col-xs-12 col-sm-8">
+                {if $row.idcard_front}<img src="{$row.idcard_front|htmlentities}" style="max-width:180px;border:1px solid #eee;border-radius:4px;" onerror="this.style.display='none'">{/if}
+                {if $row.idcard_back}<img src="{$row.idcard_back|htmlentities}" style="max-width:180px;border:1px solid #eee;border-radius:4px;margin-left:10px;" onerror="this.style.display='none'">{/if}
+            </div>
+        </div>
+        {/if}
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">审核结果:</label>
+            <div class="col-xs-12 col-sm-8" style="padding-top:7px;">
+                <label class="radio-inline"><input type="radio" name="status" value="approved" {if $row.status=='approved'}checked{/if}/> 通过</label>
+                <label class="radio-inline"><input type="radio" name="status" value="rejected" {if $row.status=='rejected'}checked{/if}/> 拒绝</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">拒绝原因:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-reject_reason" class="form-control" name="reject_reason" type="text" value="{$row.reject_reason|htmlentities}" placeholder="拒绝时必填">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success btn-embossed">确定</button>
+        <button type="button" class="btn btn-embossed btn-close" onclick="Layer.closeAll();">关闭</button>
+    </div>
+</form>

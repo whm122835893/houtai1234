@@ -1,0 +1,30 @@
+<form id="config-form" class="form-horizontal form-ajax" role="form" method="POST" action="">
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-3">开启邀请奖励:</label>
+            <div class="col-xs-12 col-sm-7" style="padding-top:7px;">
+                <label class="radio-inline"><input type="radio" name="enabled" value="1" {if !isset($config['enabled']) || $config['enabled']}checked{/if}/> 开启</label>
+                <label class="radio-inline"><input type="radio" name="enabled" value="0" {if isset($config['enabled']) && !$config['enabled']}checked{/if}/> 关闭</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-3">邀请人奖励积分:</label>
+            <div class="col-xs-12 col-sm-7">
+                <input type="number" class="form-control" name="inviter_score" value="{$config.inviter_score|default=100}" placeholder="每成功邀请1名新用户，邀请人获得的积分">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-3">被邀请人奖励积分:</label>
+            <div class="col-xs-12 col-sm-7">
+                <input type="number" class="form-control" name="invitee_score" value="{$config.invitee_score|default=20}" placeholder="新用户通过邀请注册后获得的积分">
+            </div>
+        </div>
+        <div class="alert alert-info" style="margin-bottom:0;">
+            <i class="fa fa-info-circle"></i> 用户端通过邀请码注册后自动建立邀请关系并按此配置发放积分至 <code>fa_user.score</code>。
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success btn-embossed">保存</button>
+        <button type="button" class="btn btn-embossed btn-close" onclick="Layer.closeAll();">关闭</button>
+    </div>
+</form>

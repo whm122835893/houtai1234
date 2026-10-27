@@ -1,0 +1,121 @@
+<div class="nft-saas-dash">
+
+    <!-- ===== 顶部标题 + 筛选 ===== -->
+    <div class="dash-header-row">
+        <div>
+            <h1 class="dash-section-title">
+                数字藏品仪表盘
+                <span class="nft-help-icon" title="概览藏品平台核心数据">?</span>
+            </h1>
+        </div>
+        <select id="dash-range" class="form-control" style="width:130px;height:38px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;">
+            <option value="this_week" selected>THIS WEEK</option>
+            <option value="this_month">THIS MONTH</option>
+            <option value="this_year">THIS YEAR</option>
+        </select>
+    </div>
+
+    <!-- ===== 4 张彩色统计卡（粉/紫/青绿/金黄） ===== -->
+    <div class="row" style="margin:0 -7px;">
+        <div class="col-sm-3" style="padding:0 7px;">
+            <div class="nft-saas-card saas-pink">
+                <div class="card-label">总成交额</div>
+                <div class="card-value" id="card-revenue">-</div>
+                <div class="card-change" id="card-revenue-change">-</div>
+                <div class="card-spark" id="spark-revenue"></div>
+            </div>
+        </div>
+        <div class="col-sm-3" style="padding:0 7px;">
+            <div class="nft-saas-card saas-purple">
+                <div class="card-label">用户总数</div>
+                <div class="card-value" id="card-users">-</div>
+                <div class="card-change" id="card-users-change">-</div>
+                <div class="card-spark" id="spark-users"></div>
+            </div>
+        </div>
+        <div class="col-sm-3" style="padding:0 7px;">
+            <div class="nft-saas-card saas-teal">
+                <div class="card-label">在售藏品</div>
+                <div class="card-value" id="card-collections">-</div>
+                <div class="card-change" id="card-collections-change">-</div>
+                <div class="card-spark" id="spark-collections"></div>
+            </div>
+        </div>
+        <div class="col-sm-3" style="padding:0 7px;">
+            <div class="nft-saas-card saas-gold">
+                <div class="card-label">链上藏品</div>
+                <div class="card-value" id="card-chain">-</div>
+                <div class="card-change" id="card-chain-change">-</div>
+                <div class="card-spark" id="spark-chain"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 中部：Revenue 双折线 (8 列) + Status 圆环 (4 列) ===== -->
+    <div class="row" style="margin:18px 0 0;">
+        <div class="col-lg-8" style="padding-right:11px;">
+            <div class="dash-panel">
+                <div class="dash-header-row" style="margin-bottom:14px;">
+                    <h3 class="dash-section-title">
+                        Revenue
+                        <span class="nft-help-icon" title="平台每周期收入与支出走势">?</span>
+                    </h3>
+                    <div style="display:flex;gap:18px;font-size:12px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.04em;">
+                        <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#35C79A;margin-right:6px;vertical-align:middle;"></span>Income</span>
+                        <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#E86A6A;margin-right:6px;vertical-align:middle;"></span>Outcome</span>
+                    </div>
+                </div>
+                <div id="revenue-chart" style="height:280px;width:100%;"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-4" style="padding-left:11px;">
+            <div class="dash-panel">
+                <div class="dash-header-row" style="margin-bottom:14px;">
+                    <h3 class="dash-section-title">
+                        Status
+                        <span class="nft-help-icon" title="订单当前状态分布">?</span>
+                    </h3>
+                </div>
+                <div style="position:relative;height:180px;width:100%;">
+                    <div id="status-chart" style="height:180px;width:100%;"></div>
+                    <div class="status-center-text">
+                        <div class="big-num" id="status-big-num">0%</div>
+                        <div class="big-label">RECEIVED</div>
+                    </div>
+                </div>
+                <div class="status-metrics">
+                    <div><div class="sm-num" id="sm-booked">0</div><div class="sm-label">BOOKED</div></div>
+                    <div><div class="sm-num" id="sm-progress">0</div><div class="sm-label">ON PROGRESS</div></div>
+                    <div><div class="sm-num" id="sm-canceled">0</div><div class="sm-label">CANCELED</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 底部：Recent Order 表格 ===== -->
+    <div class="dash-panel" style="margin-top:4px;">
+        <div class="dash-header-row">
+            <h3 class="dash-section-title">
+                Recent Orders
+                <span class="nft-help-icon" title="最近 10 笔订单明细">?</span>
+            </h3>
+            <a href="javascript:;" data-href="nft/order/index" class="addtabsit dash-section-sub" style="text-decoration:none;">View All →</a>
+        </div>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User</th>
+                    <th>Collection</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody id="recent-orders">
+                <tr><td colspan="6" style="text-align:center;color:#9CA3AF;padding:30px;">加载中…</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>

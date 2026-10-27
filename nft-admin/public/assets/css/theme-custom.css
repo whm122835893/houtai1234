@@ -1,0 +1,618 @@
+/*
+ * NFT Admin — SaaS Dashboard 主题
+ * 现代 SaaS 仪表盘，Dribbble 风，浅色模式，靛紫侧边栏 + 4 色统计卡
+ * 作用域：body.nft-saas-theme（单点开关）
+ * 骨架不动、只换皮肤 — 仅改 color/background/border-radius/box-shadow/font
+ */
+
+/* ========= 1. 设计 token（CSS 变量） ========= */
+body.nft-saas-theme {
+  --saaas-bg: #F4F5F7;
+  --saaas-card: #FFFFFF;
+  --saaas-text: #1F2937;
+  --saaas-muted: #9CA3AF;
+  --saaas-border: #E5E7EB;
+  --saaas-border-soft: #F3F4F6;
+  --saaas-sidebar-start: #6C5CE7;
+  --saaas-sidebar-end: #5A48E0;
+  --saaas-primary: #6C5CE7;
+  --saaas-primary-dark: #5A48E0;
+  --saaas-primary-50: #EEF2FF;
+  --saaas-chart-green: #35C79A;
+  --saaas-chart-red: #E86A6A;
+  --saaas-pill-green: #10B981;
+  --saaas-pill-orange: #F59E0B;
+  --saaas-pill-blue: #3B82F6;
+  --saaas-pill-red: #EF4444;
+  --saaas-radius: 18px;
+  --saaas-radius-sm: 10px;
+  --saaas-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.05);
+  --saaas-shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04);
+  --saaas-shadow-lg: 0 18px 40px rgba(148, 163, 184, 0.25), 0 4px 10px rgba(148, 163, 184, 0.10);
+}
+
+/* ========= 2. 全局字体（几何无衬线 — Inter 风格栈） ========= */
+body.nft-saas-theme,
+body.nft-saas-theme .wrapper,
+body.nft-saas-theme .content-wrapper {
+  background-color: var(--saaas-bg) !important;
+  color: var(--saaas-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Poppins', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========= 3. 侧边栏靛紫渐变 ========= */
+body.nft-saas-theme .skin-emerald .sidebar,
+body.nft-saas-theme .skin-blue .sidebar,
+body.nft-saas-theme .sidebar {
+  background: linear-gradient(180deg, var(--saaas-sidebar-start) 0%, var(--saaas-sidebar-end) 100%) !important;
+  box-shadow: 2px 0 24px rgba(108, 92, 231, 0.18);
+}
+
+/* 侧边栏用户面板 */
+body.nft-saas-theme .sidebar .user-panel,
+body.nft-saas-theme .sidebar .user-panel > .info,
+body.nft-saas-theme .sidebar .sidebar-menu > li > a {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+body.nft-saas-theme .sidebar .user-panel > .info p {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+/* 选中菜单项：白色胶囊 + 紫色文字 + 左侧小圆点 */
+body.nft-saas-theme .sidebar .sidebar-menu > li.active > a {
+  background: #ffffff !important;
+  color: var(--saaas-primary-dark) !important;
+  border-left: 4px solid #ffffff !important;
+  border-radius: 0 24px 24px 0 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+
+body.nft-saas-theme .sidebar .sidebar-menu > li.active > a > i {
+  color: var(--saaas-primary) !important;
+  background: transparent !important;
+}
+
+/* 未选中菜单图标：更柔和的白色 */
+body.nft-saas-theme .sidebar .sidebar-menu > li > a > i {
+  color: rgba(255, 255, 255, 0.75) !important;
+  margin-right: 10px;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all .18s ease;
+  text-align: center;
+}
+body.nft-saas-theme .sidebar .sidebar-menu > li > a:hover > i {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff !important;
+}
+
+body.nft-saas-theme .sidebar .sidebar-menu > li > a:hover,
+body.nft-saas-theme .sidebar .sidebar-menu > li > a:focus {
+  background: rgba(255, 255, 255, 0.10) !important;
+  color: #fff !important;
+}
+
+/* 子菜单 */
+body.nft-saas-theme .sidebar .sidebar-menu .treeview-menu > li > a {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+body.nft-saas-theme .sidebar .sidebar-menu .treeview-menu > li.active > a {
+  color: #fff !important;
+}
+
+/* 菜单搜索框 */
+body.nft-saas-theme .sidebar .sidebar-form input[type=text] {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+body.nft-saas-theme .sidebar .sidebar-form input[type=text]::placeholder { color: rgba(255,255,255,0.55); }
+body.nft-saas-theme .sidebar .sidebar-form .btn {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  border-radius: 0 10px 10px 0;
+}
+
+/* ========= 4. 顶部栏 ========= */
+body.nft-saas-theme .main-header .navbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid var(--saaas-border-soft);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+body.nft-saas-theme .main-header .navbar .navbar-custom-menu > li > a {
+  color: var(--saaas-muted);
+}
+body.nft-saas-theme .main-header .navbar .navbar-custom-menu > li > a:hover {
+  color: var(--saaas-primary);
+  background: var(--saaas-primary-50);
+}
+
+body.nft-saas-theme .main-header .navbar .sidebar-toggle {
+  background: transparent !important;
+  color: var(--saaas-text);
+}
+body.nft-saas-theme .main-header .navbar .sidebar-toggle:hover {
+  background: var(--saaas-primary-50) !important;
+  color: var(--saaas-primary);
+}
+
+/* Logo */
+body.nft-saas-theme .main-header .logo {
+  background: linear-gradient(135deg, var(--saaas-sidebar-start) 0%, var(--saaas-sidebar-end) 100%) !important;
+  color: #fff;
+  box-shadow: 2px 0 24px rgba(108, 92, 231, 0.18);
+}
+body.nft-saas-theme .main-header .logo:hover {
+  background: linear-gradient(135deg, var(--saaas-sidebar-start) 0%, var(--saaas-sidebar-end) 100%) !important;
+}
+
+/* tabs */
+body.nft-saas-theme .nav-tabs-custom {
+  background: #fff !important;
+  border: none !important;
+  border-radius: var(--saaas-radius) var(--saaas-radius) 0 0 !important;
+  box-shadow: var(--saaas-shadow-sm) !important;
+}
+body.nft-saas-theme .nav-tabs-custom > .nav-tabs > li > a {
+  border: none !important;
+  background: transparent !important;
+  color: var(--saaas-muted) !important;
+  border-radius: var(--saaas-radius-sm) var(--saaas-radius-sm) 0 0 !important;
+  font-weight: 500;
+}
+body.nft-saas-theme .nav-tabs-custom > .nav-tabs > li.active > a {
+  color: var(--saaas-primary) !important;
+  background: var(--saaas-primary-50) !important;
+  border: none !important;
+  box-shadow: inset 0 -2px 0 var(--saaas-primary);
+}
+
+/* ========= 5. 内容容器 ========= */
+body.nft-saas-theme .content-wrapper {
+  background: var(--saaas-bg);
+  border-left: none !important;
+}
+body.nft-saas-theme .content {
+  padding: 22px;
+}
+
+/* ========= 6. 通用卡片化（panel/box） ========= */
+body.nft-saas-theme .panel,
+body.nft-saas-theme .box,
+body.nft-saas-theme .widget,
+body.nft-saas-theme .light-box {
+  border-radius: var(--saaas-radius) !important;
+  border: none !important;
+  box-shadow: var(--saaas-shadow-md) !important;
+  background: var(--saaas-card) !important;
+  overflow: hidden;
+}
+
+body.nft-saas-theme .panel-heading,
+body.nft-saas-theme .box-header {
+  background: transparent !important;
+  border-bottom: 1px solid var(--saaas-border-soft) !important;
+  padding: 16px 22px !important;
+  font-weight: 600;
+  color: var(--saaas-text);
+}
+body.nft-saas-theme .panel-body,
+body.nft-saas-theme .box-body {
+  padding: 22px !important;
+}
+
+/* ========= 7. 表格 ========= */
+body.nft-saas-theme .bootstrap-table,
+body.nft-saas-theme .fixed-table-container,
+body.nft-saas-theme .bootstrap-table table {
+  background: var(--saaas-card) !important;
+  border: none !important;
+  border-radius: var(--saaas-radius) !important;
+}
+body.nft-saas-theme .bootstrap-table .fixed-table-toolbar {
+  background: var(--saaas-card);
+  border-top-left-radius: var(--saaas-radius);
+  border-top-right-radius: var(--saaas-radius);
+  padding: 16px 18px 4px;
+  border: none !important;
+}
+body.nft-saas-theme .bootstrap-table thead > tr > th {
+  background: #FAFAFB !important;
+  border-bottom: 1px solid var(--saaas-border-soft) !important;
+  border-top: none !important;
+  font-weight: 600;
+  color: var(--saaas-muted);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 14px !important;
+}
+body.nft-saas-theme .bootstrap-table tbody > tr > td {
+  border-bottom: 1px solid var(--saaas-border-soft) !important;
+  padding: 14px;
+  color: var(--saaas-text);
+  font-size: 13.5px;
+  vertical-align: middle !important;
+}
+body.nft-saas-theme .bootstrap-table tbody > tr:hover > td {
+  background: #F8FAFC !important;
+}
+body.nft-saas-theme .bootstrap-table tbody > tr:last-child > td {
+  border-bottom: none !important;
+}
+
+/* ========= 8. 按钮 ========= */
+body.nft-saas-theme .btn {
+  border-radius: var(--saaas-radius-sm) !important;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: all .18s ease;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 7px 16px;
+  font-size: 13px;
+}
+body.nft-saas-theme .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.10) !important;
+}
+body.nft-saas-theme .btn-primary { background: var(--saaas-primary) !important; border-color: var(--saaas-primary) !important; }
+body.nft-saas-theme .btn-primary:hover { background: var(--saaas-primary-dark) !important; }
+body.nft-saas-theme .btn-success { background: #35C79A !important; border-color: #35C79A !important; }
+body.nft-saas-theme .btn-warning { background: #F59E0B !important; border-color: #F59E0B !important; }
+body.nft-saas-theme .btn-danger  { background: #E86A6A !important; border-color: #E86A6A !important; }
+body.nft-saas-theme .btn-info    { background: #3B82F6 !important; border-color: #3B82F6 !important; }
+body.nft-saas-theme .btn-default {
+  background: #F4F5F7 !important;
+  border: 1px solid var(--saaas-border) !important;
+  color: var(--saaas-text) !important;
+}
+body.nft-saas-theme .btn-default:hover {
+  background: #E5E7EB !important;
+  border-color: #D1D5DB !important;
+}
+
+/* ========= 9. 表单 ========= */
+body.nft-saas-theme .form-control {
+  border-radius: var(--saaas-radius-sm) !important;
+  border: 1px solid var(--saaas-border) !important;
+  padding: 7px 13px;
+  height: 40px;
+  transition: all .18s ease;
+  background: var(--saaas-card);
+  color: var(--saaas-text);
+  box-shadow: none !important;
+}
+body.nft-saas-theme .form-control:focus {
+  border-color: var(--saaas-primary) !important;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15) !important;
+}
+
+/* ========= 10. 徽章 pill ========= */
+body.nft-saas-theme .label {
+  border-radius: 20px;
+  padding: 3px 11px;
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  background: #F3F4F6;
+  color: var(--saaas-muted);
+}
+body.nft-saas-theme .label-success { background: #ECFDF5 !important; color: #047857 !important; }
+body.nft-saas-theme .label-warning { background: #FFFBEB !important; color: #B45309 !important; }
+body.nft-saas-theme .label-danger  { background: #FEF2F2 !important; color: #B91C1C !important; }
+body.nft-saas-theme .label-info    { background: #EFF6FF !important; color: #1D4ED8 !important; }
+body.nft-saas-theme .label-primary { background: #EEF2FF !important; color: #4338CA !important; }
+
+/* ========= 11. Dropdown ========= */
+body.nft-saas-theme .dropdown-menu {
+  border-radius: var(--saaas-radius-sm) !important;
+  border: 1px solid var(--saaas-border) !important;
+  box-shadow: var(--saaas-shadow-lg) !important;
+  padding: 6px;
+  background: var(--saaas-card);
+}
+body.nft-saas-theme .dropdown-menu > li > a {
+  border-radius: 8px;
+  padding: 8px 14px;
+  color: var(--saaas-text);
+  font-size: 13px;
+}
+body.nft-saas-theme .dropdown-menu > li > a:hover {
+  background: var(--saaas-primary-50);
+  color: var(--saaas-primary-dark);
+}
+
+/* ========= 12. Pagination ========= */
+body.nft-saas-theme .pagination > li > a,
+body.nft-saas-theme .pagination > li > span {
+  border-radius: var(--saaas-radius-sm) !important;
+  margin: 0 2px;
+  border: 1px solid var(--saaas-border) !important;
+  color: var(--saaas-muted) !important;
+  font-weight: 500;
+  min-width: 34px;
+  text-align: center;
+  background: #fff;
+}
+body.nft-saas-theme .pagination > li.active > a,
+body.nft-saas-theme .pagination > li.active > span {
+  background: var(--saaas-primary) !important;
+  border-color: var(--saaas-primary) !important;
+  color: #fff !important;
+}
+
+/* ========= 13. 滚动条 ========= */
+body.nft-saas-theme ::-webkit-scrollbar { width: 8px; height: 8px; }
+body.nft-saas-theme ::-webkit-scrollbar-track { background: transparent; }
+body.nft-saas-theme ::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 8px;
+}
+body.nft-saas-theme ::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
+
+/* ========= 14. Toastr ========= */
+body.nft-saas-theme .toast-success { border-left-color: var(--saaas-chart-green) !important; }
+body.nft-saas-theme .toast-error   { border-left-color: var(--saaas-chart-red) !important; }
+body.nft-saas-theme .toast-info    { border-left-color: var(--saaas-pill-blue) !important; }
+body.nft-saas-theme .toast-warning { border-left-color: #F59E0B !important; }
+
+/* ========= 15. 隐藏 AdminLTE 旧 border-left ========= */
+body.nft-saas-theme .sidebar .sidebar-menu > li > a {
+  border-left: 0 solid transparent !important;
+}
+
+/* ========= 16. NFT Dashboard — 4 张 SaaS 统计卡 ========= */
+body.nft-saas-theme .nft-saas-card {
+  border-radius: var(--saaas-radius);
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 18px rgba(0, 0, 0, 0.04);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+body.nft-saas-theme .nft-saas-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 28px 50px rgba(0, 0, 0, 0.12), 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+body.nft-saas-theme .nft-saas-card .card-label {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.88;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+body.nft-saas-theme .nft-saas-card .card-value {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+body.nft-saas-theme .nft-saas-card .card-change {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+body.nft-saas-theme .nft-saas-card .card-spark {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 14px;
+  height: 36px;
+  opacity: 0.55;
+}
+body.nft-saas-theme .nft-saas-card .card-spark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+body.nft-saas-theme .nft-saas-card .card-spark path { fill: rgba(255,255,255,0.35); stroke: #fff; stroke-width: 1.5; }
+
+/* 卡片 1 — 粉 */
+body.nft-saas-theme .nft-saas-card.saas-pink {
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF8FAB 100%);
+  box-shadow: 0 20px 40px rgba(255, 107, 157, 0.30), 0 6px 16px rgba(255, 143, 171, 0.20);
+}
+/* 卡片 2 — 紫 */
+body.nft-saas-theme .nft-saas-card.saas-purple {
+  background: linear-gradient(135deg, #A55EEA 0%, #B06AB3 100%);
+  box-shadow: 0 20px 40px rgba(165, 94, 234, 0.30), 0 6px 16px rgba(176, 106, 179, 0.20);
+}
+/* 卡片 3 — 青绿 */
+body.nft-saas-theme .nft-saas-card.saas-teal {
+  background: linear-gradient(135deg, #2ED9A5 0%, #26D0A8 100%);
+  box-shadow: 0 20px 40px rgba(46, 217, 165, 0.30), 0 6px 16px rgba(38, 208, 168, 0.20);
+}
+/* 卡片 4 — 金黄 */
+body.nft-saas-theme .nft-saas-card.saas-gold {
+  background: linear-gradient(135deg, #F7D046 0%, #F2B93B 100%);
+  box-shadow: 0 20px 40px rgba(247, 208, 70, 0.35), 0 6px 16px rgba(242, 185, 59, 0.22);
+}
+
+  padding: 4px 0 28px;
+}
+
+  width: auto;
+  min-width: 110px;
+  height: 34px;
+  padding: 4px 30px 4px 12px;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--saaas-muted);
+  background: #F8FAFC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239CA3AF'/%3E%3C/svg%3E") no-repeat right 10px center;
+  background-size: 8px 5px;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+/* 仪表盘卡片标题（带问号 help 图标） */
+body.nft-saas-theme .nft-saas-dash .dash-section-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--saaas-text);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body.nft-saas-theme .nft-saas-dash .dash-section-title .help-icon {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--saaas-border-soft);
+  color: var(--saaas-muted);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  cursor: help;
+  transition: all .15s;
+}
+body.nft-saas-theme .nft-saas-dash .dash-section-title .help-icon:hover {
+  background: var(--saaas-primary-50);
+  color: var(--saaas-primary);
+}
+body.nft-saas-theme .nft-saas-dash .dash-section-sub {
+  color: var(--saaas-muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+body.nft-saas-theme .nft-saas-dash .dash-header-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Revenue / Status 面板 */
+body.nft-saas-theme .nft-saas-dash .dash-panel {
+  background: #fff;
+  border-radius: var(--saaas-radius);
+  box-shadow: var(--saaas-shadow-md);
+  padding: 24px;
+  margin-bottom: 22px;
+}
+
+/* Recent Order 表格 */
+body.nft-saas-theme .nft-saas-dash table.order-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13.5px;
+  color: var(--saaas-text);
+}
+body.nft-saas-theme .nft-saas-dash table.order-table thead th {
+  color: var(--saaas-muted);
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--saaas-border-soft);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+body.nft-saas-theme .nft-saas-dash table.order-table tbody td {
+  padding: 13px 14px;
+  border-bottom: 1px solid #F1F5F9;
+  vertical-align: middle;
+  font-size: 13px;
+}
+body.nft-saas-theme .nft-saas-dash table.order-table tbody tr:hover td { background: #F8FAFC; }
+body.nft-saas-theme .nft-saas-dash table.order-table tbody tr:last-child td { border-bottom: none; }
+
+/* Order 状态 pill（规范：On Delivery 绿 / Pending 橙） */
+body.nft-saas-theme .nft-saas-dash .order-pill {
+  display: inline-block;
+  font-size: 11.5px;
+  padding: 3px 11px;
+  border-radius: 20px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+body.nft-saas-theme .nft-saas-dash .order-pill.pill-green  { background: #ECFDF5; color: #047857; }
+body.nft-saas-theme .nft-saas-dash .order-pill.pill-orange { background: #FFFBEB; color: #B45309; }
+body.nft-saas-theme .nft-saas-dash .order-pill.pill-blue   { background: #EFF6FF; color: #1D4ED8; }
+body.nft-saas-theme .nft-saas-dash .order-pill.pill-red    { background: #FEF2F2; color: #B91C1C; }
+
+/* Revenue tooltip 彩色胶囊 */
+body.nft-saas-theme .nft-saas-dash .revenue-tooltip {
+  background: #1F2937;
+  border-radius: 14px;
+  padding: 10px 14px;
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+  font-size: 12px;
+}
+body.nft-saas-theme .nft-saas-dash .revenue-tooltip .tip-row { display: flex; justify-content: space-between; gap: 18px; margin-top: 4px; }
+body.nft-saas-theme .nft-saas-dash .revenue-tooltip .tip-label { color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; }
+body.nft-saas-theme .nft-saas-dash .revenue-tooltip .tip-value { font-weight: 700; }
+body.nft-saas-theme .nft-saas-dash .revenue-tooltip .tip-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  margin-right: 8px; vertical-align: middle;
+}
+
+/* Status 圆环图容器 */
+body.nft-saas-theme .nft-saas-dash .status-center-text {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -60%);
+  text-align: center; pointer-events: none;
+}
+body.nft-saas-theme .nft-saas-dash .status-center-text .big-num {
+  font-size: 42px; font-weight: 700; color: var(--saaas-text);
+  letter-spacing: -0.02em;
+}
+body.nft-saas-theme .nft-saas-dash .status-center-text .big-label {
+  font-size: 11px; font-weight: 700; color: var(--saaas-muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+body.nft-saas-theme .nft-saas-dash .status-metrics {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  margin-top: 20px; text-align: center; gap: 8px;
+}
+body.nft-saas-theme .nft-saas-dash .status-metrics .sm-num {
+  font-size: 22px; font-weight: 700; color: var(--saaas-text);
+  letter-spacing: -0.01em;
+}
+body.nft-saas-theme .nft-saas-dash .status-metrics .sm-label {
+  font-size: 11px; font-weight: 700; color: var(--saaas-muted);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;
+}
+
+/* ========= 18. Help / Info icon 通用 ========= */
+body.nft-saas-theme .nft-help-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--saaas-border-soft);
+  color: var(--saaas-muted);
+  font-size: 12px; font-weight: 700;
+  cursor: help; margin-left: 6px;
+  transition: all .15s;
+}
+body.nft-saas-theme .nft-help-icon:hover {
+  background: var(--saaas-primary-50);
+  color: var(--saaas-primary);
+}
+
+/* ========= 19. 响应式：小屏自适应 ========= */
+@media (max-width: 1200px) {
+  body.nft-saas-theme .nft-saas-card.col-sm-3 { flex: 0 0 50%; max-width: 50%; margin-bottom: 14px; }
+}
+@media (max-width: 768px) {
+  body.nft-saas-theme .nft-saas-card.col-sm-3 { flex: 0 0 100%; max-width: 100%; }
+}
